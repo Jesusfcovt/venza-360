@@ -12,32 +12,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0a0b0d;font-family:
 canvas{display:block;width:100%;height:100%;position:fixed;top:0;left:0;touch-action:none;cursor:grab;}
 canvas:active{cursor:grabbing;}
 
-/* HEADER — logo grande, fondo con más gradiente */
-#header{
-  position:fixed;top:0;left:0;right:0;z-index:20;
-  padding-top:env(safe-area-inset-top,0px);
-  background:linear-gradient(to bottom,rgba(8,9,12,.92) 65%,transparent);
-  pointer-events:none;
-}
-#header-inner{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 16px 22px;
-}
-/* Logo notablemente más grande */
-#logo-img{
-  height:70px;width:auto;flex-shrink:0;
-  object-fit:contain;display:block;
-  filter:drop-shadow(0 2px 8px rgba(0,0,0,.5));
-}
+#header{position:fixed;top:0;left:0;right:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:linear-gradient(to bottom,rgba(8,9,12,.92) 65%,transparent);pointer-events:none;}
+#header-inner{display:flex;align-items:center;gap:12px;padding:10px 16px 22px;}
+/* LOGO DOBLE — 140px */
+#logo-img{height:140px;width:auto;flex-shrink:0;object-fit:contain;display:block;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6));}
 #spacer-h{flex:1;}
-#scene-pill{
-  flex-shrink:0;
-  background:rgba(200,169,110,.12);border:1px solid rgba(200,169,110,.3);
-  border-radius:20px;padding:4px 11px;
-  color:#c8a96e;font-size:9px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
-}
+#scene-pill{flex-shrink:0;background:rgba(200,169,110,.12);border:1px solid rgba(200,169,110,.3);border-radius:20px;padding:4px 11px;color:#c8a96e;font-size:9px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
 
-/* HINT */
 #hint{position:fixed;top:50%;left:50%;z-index:15;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none;transition:opacity .9s;}
 #hint.hidden{opacity:0;}
 #hint-ring{width:58px;height:58px;border-radius:50%;border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;animation:pulse 2.2s ease-in-out infinite;}
@@ -45,11 +26,9 @@ canvas:active{cursor:grabbing;}
 #hint-txt{color:rgba(255,255,255,.5);font-size:10px;letter-spacing:.18em;text-transform:uppercase;text-align:center;}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:.6;}50%{transform:scale(1.08);opacity:1;}}
 
-/* WATERMARK — logo tenue */
 #watermark{position:fixed;bottom:90px;right:14px;z-index:12;pointer-events:none;}
-#watermark img{height:36px;width:auto;opacity:.18;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,.4));}
+#watermark img{height:40px;width:auto;opacity:.18;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5));}
 
-/* BOTTOM */
 #bottom{position:fixed;bottom:0;left:0;right:0;z-index:20;padding-bottom:env(safe-area-inset-bottom,0px);background:linear-gradient(to top,rgba(8,9,12,.93) 60%,transparent);}
 #bottom-inner{display:flex;align-items:flex-end;gap:10px;padding:18px 14px 16px;}
 #thumbs{display:flex;gap:8px;flex-shrink:0;}
@@ -66,27 +45,23 @@ canvas:active{cursor:grabbing;}
 .zbtn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#b8bdc6;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s;}
 .zbtn:active{background:rgba(200,169,110,.25);border-color:#c8a96e;color:#c8a96e;}
 
-/* FLOAT BUTTONS */
-#floats{position:fixed;z-index:21;top:0;right:0;padding-top:calc(env(safe-area-inset-top,0px) + 72px);padding-right:14px;display:flex;flex-direction:column;gap:7px;}
+#floats{position:fixed;z-index:21;top:0;right:0;padding-top:calc(env(safe-area-inset-top,0px) + 160px);padding-right:14px;display:flex;flex-direction:column;gap:7px;}
 .fbtn{width:36px;height:36px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:rgba(8,9,12,.72);color:#b8bdc6;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .15s,border-color .15s,color .15s;}
 .fbtn.on,.fbtn:active{background:rgba(200,169,110,.25);border-color:#c8a96e;color:#c8a96e;}
 .fbtn svg{width:17px;height:17px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 
-/* INDICATORS */
 .ind{position:fixed;left:50%;z-index:25;bottom:calc(env(safe-area-inset-bottom,0px) + 82px);transform:translateX(-50%);border-radius:20px;padding:4px 12px;font-size:9px;letter-spacing:.13em;text-transform:uppercase;opacity:0;transition:opacity .4s;pointer-events:none;white-space:nowrap;}
 #autoind{background:rgba(200,169,110,.16);border:1px solid rgba(200,169,110,.35);color:#c8a96e;}
 #gyrind{background:rgba(80,160,255,.14);border:1px solid rgba(80,160,255,.35);color:rgba(130,200,255,.9);}
 .ind.on{opacity:1;}
 
-/* SHARE TOAST */
-#share-toast{position:fixed;left:50%;z-index:30;top:calc(env(safe-area-inset-top,0px) + 90px);transform:translateX(-50%) translateY(-20px);background:rgba(20,22,28,.96);border:1px solid rgba(200,169,110,.4);border-radius:12px;padding:10px 18px;color:#fff;font-size:12px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+#share-toast{position:fixed;left:50%;z-index:30;top:calc(env(safe-area-inset-top,0px) + 170px);transform:translateX(-50%) translateY(-20px);background:rgba(20,22,28,.96);border:1px solid rgba(200,169,110,.4);border-radius:12px;padding:10px 18px;color:#fff;font-size:12px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
 #share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* LOADER */
 #loader{position:fixed;inset:0;z-index:50;background:#0a0b0d;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .7s;}
 #loader.done{opacity:0;pointer-events:none;}
 #loader-logo-wrap{padding:20px 40px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);margin-bottom:4px;}
-#loader-logo-wrap img{height:70px;width:auto;display:block;}
+#loader-logo-wrap img{height:100px;width:auto;display:block;}
 #loader-bar-wrap{width:160px;height:2px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;margin-top:4px;}
 #loader-bar{height:100%;background:#c8a96e;width:0%;transition:width .35s ease;}
 #loader-sub{color:rgba(184,189,198,.4);font-size:9px;letter-spacing:.18em;text-transform:uppercase;}
@@ -95,14 +70,12 @@ canvas:active{cursor:grabbing;}
 <body>
 <canvas id="canvas"></canvas>
 
-<!-- LOADER -->
 <div id="loader">
   <div id="loader-logo-wrap"><img src="logo.png" alt="Logo"></div>
   <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
   <div id="loader-sub">Cargando panorámica 360°…</div>
 </div>
 
-<!-- HEADER -->
 <div id="header">
   <div id="header-inner">
     <img id="logo-img" src="logo.png" alt="Logo">
@@ -111,16 +84,13 @@ canvas:active{cursor:grabbing;}
   </div>
 </div>
 
-<!-- WATERMARK -->
 <div id="watermark"><img src="logo.png" alt=""></div>
 
-<!-- HINT -->
 <div id="hint">
   <div id="hint-ring"><svg viewBox="0 0 24 24"><path d="M8 12h8M4 8l4 4-4 4M20 8l-4 4 4 4"/></svg></div>
   <div id="hint-txt">Arrastra para explorar</div>
 </div>
 
-<!-- FLOAT BUTTONS -->
 <div id="floats">
   <button class="fbtn" id="btn-fs" title="Pantalla completa">&#x26F6;</button>
   <button class="fbtn" id="btn-auto" title="Auto-rotar">&#8635;</button>
@@ -136,7 +106,6 @@ canvas:active{cursor:grabbing;}
 <div class="ind" id="gyrind">● Giroscopio activo</div>
 <div id="share-toast">✓ Link copiado</div>
 
-<!-- BOTTOM -->
 <div id="bottom">
   <div id="bottom-inner">
     <div id="thumbs"></div>
